@@ -434,12 +434,14 @@
 
   .carousel-wrap {
     position: relative;
-    overflow: visible;
+    overflow: hidden;
+    margin: 0;
   }
 
   .carousel-inner {
-    overflow: hidden;
+    display: flex;
     width: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .carousel-track {
@@ -546,8 +548,8 @@
     color: white;
   }
 
-  .carousel-btn.prev { left: -24px; }
-  .carousel-btn.next { right: -24px; }
+  .carousel-btn.prev { left: 0.5rem; }
+  .carousel-btn.next { right: 0.5rem; }
 
   .carousel-dots {
     display: flex;
@@ -846,97 +848,7 @@
     white-space: nowrap;
   }
 
-  /* PASSWORD OVERLAY */
-  .pwd-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(5,3,15,0.97);
-    z-index: 99999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-  }
 
-  .pwd-overlay.hidden { display: none; }
-
-  .pwd-logo {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: 2.5rem;
-    color: var(--neon-cyan);
-    text-shadow: 0 0 20px var(--neon-cyan);
-    letter-spacing: 0.05em;
-  }
-
-  .pwd-logo span { color: var(--neon-pink); }
-
-  .pwd-subtitle {
-    font-family: 'VT323', monospace;
-    font-size: 1.1rem;
-    letter-spacing: 0.3em;
-    color: rgba(232,224,255,0.4);
-  }
-
-  .pwd-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    max-width: 340px;
-  }
-
-  .pwd-input {
-    width: 100%;
-    background: rgba(0,245,255,0.04);
-    border: 1px solid rgba(0,245,255,0.3);
-    color: var(--neon-cyan);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 0.3em;
-    padding: 0.85rem 1.5rem;
-    text-align: center;
-    outline: none;
-    transition: all 0.2s;
-  }
-
-  .pwd-input:focus {
-    border-color: var(--neon-cyan);
-    box-shadow: 0 0 20px rgba(0,245,255,0.2);
-  }
-
-  .pwd-input::placeholder { color: rgba(0,245,255,0.2); letter-spacing: 0.2em; }
-
-  .pwd-btn {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--dark);
-    background: var(--neon-cyan);
-    border: none;
-    padding: 0.85rem 3rem;
-    cursor: pointer;
-    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    box-shadow: 0 0 20px rgba(0,245,255,0.4);
-    transition: all 0.2s;
-    width: 100%;
-  }
-
-  .pwd-btn:hover { background: var(--neon-pink); box-shadow: 0 0 30px rgba(255,45,120,0.5); }
-
-  .pwd-error {
-    font-family: 'VT323', monospace;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
-    color: var(--neon-pink);
-    text-shadow: 0 0 8px var(--neon-pink);
-    display: none;
-  }
-
-  .pwd-error.show { display: block; }
 
   /* EM BREVE page link in nav */
   .nav-embreve {
@@ -1335,25 +1247,6 @@
 </footer>
 
 <script>
-  // PASSWORD
-  const SENHA = 'worldpt2024';
-  function checkPwd() {
-    const val = document.getElementById('pwd-input').value;
-    if (val === SENHA) {
-      document.getElementById('pwd-overlay').classList.add('hidden');
-      sessionStorage.setItem('auth', '1');
-    } else {
-      document.getElementById('pwd-error').classList.add('show');
-      document.getElementById('pwd-input').value = '';
-      setTimeout(() => document.getElementById('pwd-error').classList.remove('show'), 2000);
-    }
-  }
-  if (!sessionStorage.getItem('auth')) {
-    document.getElementById('pwd-overlay').classList.remove('hidden');
-  } else {
-    document.getElementById('pwd-overlay').classList.add('hidden');
-  }
-
   // STATS COUNTER
   const catalogue = [
     { title: 'O Incrível Homem-Aranha', year: 2008, type: 'SÉRIE', img: 'https://i.imgur.com/DMWawoJ.jpg', url: 'homem-aranha.html' },
@@ -1385,7 +1278,7 @@
   }
 
   function updateCarousel() {
-    document.getElementById('carousel-track').style.transform = `translateX(-${current * 100}%)`;
+    document.querySelector('.carousel-inner').style.transform = `translateX(-${current * 100}%)`;
     document.querySelectorAll('.dot').forEach((d, i) => {
       d.classList.toggle('active', i === current);
     });
@@ -1444,9 +1337,6 @@
   <div class="search-results" id="search-results"></div>
 </div>
 
-<!-- PASSWORD OVERLAY -->
-<div class="pwd-overlay" id="pwd-overlay">
-  <div class="pwd-logo">WORLD<span> PT</span></div>
   <div class="pwd-subtitle">◈ ACESSO PRIVADO ◈</div>
   <div class="pwd-form">
     <input type="password" class="pwd-input" id="pwd-input" placeholder="SENHA" onkeydown="if(event.key==='Enter')checkPwd()">
@@ -1457,3 +1347,4 @@
 
 </body>
 </html>
+
