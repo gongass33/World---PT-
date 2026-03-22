@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%20%20%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%224%22%20fill%3D%22%2305030f%22/%3E%0A%20%20%3Crect%20x%3D%222%22%20y%3D%227%22%20width%3D%2228%22%20height%3D%2218%22%20rx%3D%222%22%20fill%3D%22%231a0533%22%20stroke%3D%22%2300f5ff%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Crect%20x%3D%224%22%20y%3D%229%22%20width%3D%2224%22%20height%3D%2214%22%20rx%3D%221%22%20fill%3D%22%230d0820%22/%3E%0A%20%20%3Ccircle%20cx%3D%2210%22%20cy%3D%2218%22%20r%3D%223.5%22%20fill%3D%22%2305030f%22%20stroke%3D%22%23ff2d78%22%20stroke-width%3D%221.2%22/%3E%0A%20%20%3Ccircle%20cx%3D%2222%22%20cy%3D%2218%22%20r%3D%223.5%22%20fill%3D%22%2305030f%22%20stroke%3D%22%23ff2d78%22%20stroke-width%3D%221.2%22/%3E%0A%20%20%3Ccircle%20cx%3D%2210%22%20cy%3D%2218%22%20r%3D%221.2%22%20fill%3D%22%23ff2d78%22/%3E%0A%20%20%3Ccircle%20cx%3D%2222%22%20cy%3D%2218%22%20r%3D%221.2%22%20fill%3D%22%23ff2d78%22/%3E%0A%20%20%3Crect%20x%3D%2212.5%22%20y%3D%2216.5%22%20width%3D%227%22%20height%3D%223%22%20rx%3D%220.5%22%20fill%3D%22%231a0533%22%20stroke%3D%22%2300f5ff%22%20stroke-width%3D%220.8%22/%3E%0A%20%20%3Crect%20x%3D%228%22%20y%3D%2210%22%20width%3D%2216%22%20height%3D%224%22%20rx%3D%220.5%22%20fill%3D%22%23120d2a%22%20stroke%3D%22%23bf00ff%22%20stroke-width%3D%220.8%22/%3E%0A%20%20%3Crect%20x%3D%2210%22%20y%3D%2211%22%20width%3D%2212%22%20height%3D%222%22%20rx%3D%220.3%22%20fill%3D%22%2300f5ff%22%20opacity%3D%220.3%22/%3E%0A%20%20%3Crect%20x%3D%226%22%20y%3D%2222%22%20width%3D%223%22%20height%3D%221.5%22%20rx%3D%220.3%22%20fill%3D%22%2300f5ff%22%20opacity%3D%220.6%22/%3E%0A%20%20%3Crect%20x%3D%2223%22%20y%3D%2222%22%20width%3D%223%22%20height%3D%221.5%22%20rx%3D%220.3%22%20fill%3D%22%2300f5ff%22%20opacity%3D%220.6%22/%3E%0A%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Incrível Homem-Aranha — WORLD PT</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-pink: #ff2d78;
+    --neon-cyan: #00f5ff;
+    --neon-yellow: #ffe600;
+    --neon-purple: #bf00ff;
+    --dark: #05030f;
+    --dark2: #0d0820;
+    --dark3: #120d2a;
+    --card-bg: #0d0820cc;
+    --text: #e8e0ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .grid-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image:
+      linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HEADER */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,245,255,0.15);
+    background: rgba(5,3,15,0.9);
+    backdrop-filter: blur(10px);
+  }
+
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan), 0 0 30px rgba(0,245,255,0.3);
+    text-decoration: none;
+  }
+  .logo span { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink); }
+
+  nav { display: flex; gap: 2rem; align-items: center; }
+  nav a {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(232,224,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); }
+
+  .back-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: rgba(232,224,255,0.4);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .back-btn:hover { color: var(--neon-cyan); }
+
+  /* HERO BANNER — STREAMING STYLE */
+  .hero-banner {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    min-height: 580px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #05030f;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 20%;
+    filter: brightness(0.3) saturate(1.4);
+    z-index: 0;
+  }
+
+  .hero-poster-right { display: none; }
+
+  .hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      #05030f 0%,
+      rgba(5,3,15,0.85) 30%,
+      rgba(5,3,15,0.3) 60%,
+      transparent 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-left-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(5,3,15,0.6) 0%,
+      transparent 60%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-bottom-fade { display: none; }
+
+  .hero-content {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 2rem;
+    padding: 0 3rem 3rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 580px;
+  }
+
+  .poster {
+    display: block;
+    flex-shrink: 0;
+    width: 180px;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.6);
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-info {
+    flex: 1;
+    padding-bottom: 0.25rem;
+    max-width: 600px;
+  }
+
+  /* SYNOPSIS below hero */
+  .synopsis-section {
+    position: relative;
+    z-index: 5;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 3rem 0;
+    border-top: 1px solid rgba(0,245,255,0.06);
+  }
+
+  .synopsis-label {
+    font-family: 'VT323', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.25em;
+    color: rgba(232,224,255,0.35);
+    margin-bottom: 0.5rem;
+  }
+
+  .synopsis-text {
+    font-size: 0.82rem;
+    line-height: 1.85;
+    color: rgba(232,224,255,0.6);
+    max-width: 750px;
+  }
+
+  .hero-label {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 8px var(--neon-yellow);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .hero-title span { color: var(--neon-pink); text-shadow: 0 0 15px rgba(255,45,120,0.5); }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+
+  .meta-pill {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    padding: 3px 12px;
+    border: 1px solid;
+  }
+
+  .meta-pill.year { color: var(--neon-cyan); border-color: rgba(0,245,255,0.3); }
+  .meta-pill.genre { color: var(--neon-purple); border-color: rgba(191,0,255,0.3); }
+  .meta-pill.eps { color: var(--neon-yellow); border-color: rgba(255,230,0,0.3); }
+  .meta-pill.dur { color: rgba(232,224,255,0.6); border-color: rgba(232,224,255,0.15); }
+
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stars {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 8px var(--neon-yellow);
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .rating-num {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--neon-yellow);
+  }
+
+  .rating-src {
+    font-size: 0.65rem;
+    color: rgba(232,224,255,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  .synopsis {
+    font-size: 0.8rem;
+    line-height: 1.9;
+    color: rgba(232,224,255,0.65);
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+
+  .action-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--neon-cyan);
+    border: none;
+    padding: 0.85rem 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: all 0.2s;
+    box-shadow: 0 0 20px rgba(0,245,255,0.4);
+  }
+  .btn-primary:hover { background: var(--neon-pink); box-shadow: 0 0 30px rgba(255,45,120,0.5); }
+
+  /* PLAYER SECTION */
+  .player-section {
+    position: relative;
+    z-index: 5;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px rgba(255,45,120,0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 1.1rem;
+    background: var(--neon-pink);
+    box-shadow: 0 0 8px var(--neon-pink);
+  }
+
+  .section-title.cyan { color: var(--neon-cyan); text-shadow: 0 0 10px rgba(0,245,255,0.4); }
+  .section-title.cyan::before { background: var(--neon-cyan); box-shadow: 0 0 8px var(--neon-cyan); }
+
+  .player-wrapper {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border: 1px solid rgba(0,245,255,0.15);
+    box-shadow: 0 0 40px rgba(0,245,255,0.08);
+    margin-bottom: 1rem;
+    z-index: 10000;
+  }
+
+  .player-wrapper iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: block;
+    border: none;
+  }
+
+  .now-playing {
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: rgba(0,245,255,0.5);
+    margin-bottom: 2rem;
+  }
+
+  .now-playing span { color: var(--neon-cyan); }
+
+
+  /* PLAYER SWITCHER */
+  .player-switcher {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+
+  .player-switcher-label {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: rgba(232,224,255,0.4);
+    margin-right: 0.5rem;
+  }
+
+  .psw-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(0,245,255,0.2);
+    color: rgba(232,224,255,0.4);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .psw-btn:hover {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+  }
+
+  .psw-btn.active {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+    background: rgba(255,45,120,0.08);
+    box-shadow: 0 0 10px rgba(255,45,120,0.2);
+  }
+
+  .psw-btn .dot-indicator {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+  }
+
+  .player-note {
+    font-size: 0.65rem;
+    color: rgba(232,224,255,0.25);
+    letter-spacing: 0.08em;
+    margin-left: auto;
+  }
+
+  /* EPISODES */
+  .episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .ep-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    background: rgba(13,8,32,0.8);
+    border: 1px solid rgba(0,245,255,0.08);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .ep-card:hover, .ep-card.active {
+    border-color: var(--neon-cyan);
+    background: rgba(0,245,255,0.05);
+    box-shadow: 0 0 15px rgba(0,245,255,0.1);
+  }
+
+  .ep-card.active { border-color: var(--neon-pink); background: rgba(255,45,120,0.05); }
+
+  .ep-num {
+    font-family: 'VT323', monospace;
+    font-size: 1.8rem;
+    color: rgba(0,245,255,0.3);
+    min-width: 36px;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .ep-card.active .ep-num { color: var(--neon-pink); }
+
+  .ep-info { flex: 1; }
+
+  .ep-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .ep-meta {
+    font-size: 0.65rem;
+    color: rgba(232,224,255,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  .ep-play {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(0,245,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,245,255,0.4);
+    font-size: 10px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .ep-card:hover .ep-play, .ep-card.active .ep-play {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: 0 0 8px rgba(0,245,255,0.3);
+  }
+
+  .ep-card.active .ep-play {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+    box-shadow: 0 0 8px rgba(255,45,120,0.3);
+  }
+
+  /* SEASON TABS */
+  .season-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stab {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(0,245,255,0.2);
+    color: rgba(232,224,255,0.4);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .stab:hover, .stab.active {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    background: rgba(0,245,255,0.05);
+  }
+
+  /* RECOMMENDED */
+  .rec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .rec-card {
+    background: rgba(13,8,32,0.8);
+    border: 1px solid rgba(0,245,255,0.08);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: block;
+  }
+
+  .rec-card:hover {
+    border-color: var(--neon-cyan);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 20px rgba(0,245,255,0.15);
+  }
+
+  .rec-thumb {
+    aspect-ratio: 2/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'VT323', monospace;
+    font-size: 3rem;
+    opacity: 0.4;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rec-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 1;
+  }
+
+  .p1 { background: linear-gradient(135deg, #1a0533, #bf00ff); }
+  .p2 { background: linear-gradient(135deg, #001a2e, #00f5ff); }
+  .p3 { background: linear-gradient(135deg, #2e0a00, #ff2d78); }
+  .p4 { background: linear-gradient(135deg, #0a2e00, #00f5ff); }
+
+  .rec-info { padding: 0.65rem; }
+  .rec-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .rec-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .rec-year {
+    font-family: 'VT323', monospace;
+    font-size: 0.9rem;
+    color: rgba(232,224,255,0.35);
+  }
+
+  .rec-type {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    padding: 1px 5px;
+    color: var(--neon-purple);
+    border: 1px solid rgba(191,0,255,0.3);
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 5;
+    border-top: 1px solid rgba(0,245,255,0.08);
+    padding: 2rem 3rem;
+    text-align: center;
+    background: rgba(5,3,15,0.6);
+  }
+
+  footer p {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: rgba(232,224,255,0.2);
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 1rem 1.5rem; }
+    nav { display: none; }
+    .hero-banner { flex-direction: column; padding: 1.5rem; gap: 1.5rem; }
+    .poster { width: 140px; }
+    .player-section { padding: 1.5rem; }
+    .episodes-grid { grid-template-columns: 1fr; }
+    .rec-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  }
+
+  @keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      text-shadow: 0 0 4px #fff, 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+      opacity: 1;
+    }
+    20%, 24%, 55% { text-shadow: none; opacity: 0.4; }
+  }
+  @keyframes neon-flicker-pink {
+    0%, 29%, 31%, 33%, 64%, 66%, 100% {
+      text-shadow: 0 0 4px #fff, 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+      opacity: 1;
+    }
+    30%, 32%, 65% { text-shadow: none; opacity: 0.3; }
+  }
+  @keyframes flag-flicker {
+    0%, 39%, 41%, 80%, 82%, 100% { opacity: 1; filter: drop-shadow(0 0 4px rgba(255,215,0,0.8)); }
+    40%, 81% { opacity: 0.3; filter: none; }
+  }
+  .logo-text-world { animation: neon-flicker 6s infinite; color: var(--neon-cyan); }
+  .logo-text-pt { animation: neon-flicker-pink 5s infinite; color: var(--neon-pink) !important; }
+  .logo-flag { animation: flag-flicker 7s infinite; display: inline-block; }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="logo"><span class="logo-flag"><svg width="22" height="15" viewBox="0 0 22 15" style="display:inline-block;vertical-align:middle;margin-right:8px;image-rendering:pixelated;border:1px solid rgba(255,255,255,0.2);" xmlns="http://www.w3.org/2000/svg">
+  <rect width="8" height="15" fill="#006600"/>
+  <rect x="8" width="14" height="15" fill="#FF0000"/>
+  <ellipse cx="8" cy="7.5" rx="3.5" ry="3.5" fill="#FFD700" stroke="#006600" stroke-width="0.5"/>
+  <ellipse cx="8" cy="7.5" rx="2" ry="2" fill="#003399"/>
+  <rect x="6.5" y="6.5" width="3" height="2" fill="none" stroke="#FFD700" stroke-width="0.4"/>
+</svg></span><span class="logo-text-world">WORLD</span><span class="logo-text-pt"> PT</span></a>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="index.html#series" class="active">Séries</a>
+    <a href="index.html#filmes">Filmes</a>
+  </nav>
+  <a href="index.html" class="back-btn">← Voltar</a>
+</header>
+
+<!-- HERO BANNER -->
+<div class="hero-banner">
+  <div class="hero-bg" style="background-image:url('https://i.imgur.com/DMWawoJ.jpg');"></div>
+  <div class="hero-left-fade"></div>
+  <div class="hero-content">
+    <img class="poster" src="https://i.imgur.com/wQaUyaM.jpg" alt="poster">
+    <div class="hero-info">
+      <div class="hero-label">◈ SÉRIE ANIMADA</div>
+      <h1 class="hero-title">O Incrível<br><span>Homem-Aranha</span></h1>
+      <div class="meta-row">
+        <span class="meta-pill year">2008</span>
+        <span class="meta-pill genre">ANIMAÇÃO</span>
+        <span class="meta-pill genre">ACÇÃO</span>
+        <span class="meta-pill eps">26 EPISÓDIOS</span>
+        <span class="meta-pill dur">∅ 22 MIN / EP</span>
+      </div>
+      <div class="rating-row">
+        <span class="stars">★★★★★</span>
+        <span class="rating-num">8.1</span>
+        <span class="rating-src">/ 10 — IMDb</span>
+      </div>
+      <div class="action-row" style="margin-top:1rem;">
+        <a href="#player" class="btn-primary" onclick="playEp('ep1', null)">▶ Ver Episódio 1</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SYNOPSIS -->
+<div class="synopsis-section">
+  <div class="synopsis-label">◈ SOBRE A SÉRIE</div>
+  <p class="synopsis-text">Peter Parker é um adolescente inteligente mas socialmente tímido que, após ser picado por uma aranha geneticamente modificada, adquire poderes extraordinários. Enquanto tenta equilibrar a vida escolar, a família e o amor, enfrenta alguns dos vilões mais icónicos do universo Marvel — incluindo o Duende Verde, Electro, o Abutre e muitos outros.</p>
+</div>
+
+<!-- PLAYER -->
+<section class="player-section" id="player">
+  <div class="section-title">Player</div>
+  <div class="player-switcher">
+    <span class="player-switcher-label">FONTE:</span>
+    <button class="psw-btn active" id="btn-archive" onclick="switchPlayer('archive')">
+      <span class="dot-indicator"></span> Archive.org
+    </button>
+    <button class="psw-btn" id="btn-streamtape" onclick="switchPlayer('streamtape')">
+      <span class="dot-indicator"></span> Streamtape
+    </button>
+    <span class="player-note">* Archive.org sem anúncios · Streamtape com anúncios</span>
+  </div>
+  <div class="player-wrapper">
+    <iframe id="main-player" src="https://archive.org/embed/o-espetacular-homem-aranha-1-tp-e-01" allowfullscreen></iframe>
+  </div>
+  <div class="now-playing">◈ A REPRODUZIR: <span id="now-playing-title">Episódio 1 — A Grande Responsabilidade</span></div>
+
+  <!-- EPISODES -->
+  <div class="section-title">Episódios</div>
+  <div class="season-tabs">
+    <button class="stab active">Temporada 1</button>
+    <button class="stab">Temporada 2</button>
+  </div>
+
+  <div class="episodes-grid" id="eps-grid">
+
+    <div class="ep-card active" onclick="playEp('ep1', this)">
+      <div class="ep-num">01</div>
+      <div class="ep-info">
+        <div class="ep-title">A Grande Responsabilidade</div>
+        <div class="ep-meta">TEMPORADA 1 · 22 MIN</div>
+      </div>
+      <div class="ep-play">▶</div>
+    </div>
+
+    <div class="ep-card" onclick="playEp('ep2', this)">
+      <div class="ep-num">02</div>
+      <div class="ep-info">
+        <div class="ep-title">Inocente!</div>
+        <div class="ep-meta">TEMPORADA 1 · 22 MIN</div>
+      </div>
+      <div class="ep-play">▶</div>
+    </div>
+
+    <div class="ep-card" onclick="playEp('ep3', this)">
+      <div class="ep-num">03</div>
+      <div class="ep-info">
+        <div class="ep-title">Não Há Lugar Como o Lar</div>
+        <div class="ep-meta">TEMPORADA 1 · 22 MIN</div>
+      </div>
+      <div class="ep-play">▶</div>
+    </div>
+
+    <div class="ep-card" onclick="playEp('ep4', this)">
+      <div class="ep-num">04</div>
+      <div class="ep-info">
+        <div class="ep-title">O Abutre</div>
+        <div class="ep-meta">TEMPORADA 1 · 22 MIN</div>
+      </div>
+      <div class="ep-play">▶</div>
+    </div>
+
+    <div class="ep-card" onclick="playEp('ep5', this)">
+      <div class="ep-num">05</div>
+      <div class="ep-info">
+        <div class="ep-title">Ligações Perigosas</div>
+        <div class="ep-meta">TEMPORADA 1 · 22 MIN</div>
+      </div>
+      <div class="ep-play">▶</div>
+    </div>
+
+    <div class="ep-card" onclick="playEp('ep6', this)">
+      <div class="ep-num">06</div>
+      <div class="ep-info">
+        <div class="ep-title">O Electro</div>
+        <div class="ep-meta">TEMPORADA 1 · 22 MIN</div>
+      </div>
+      <div class="ep-play">▶</div>
+    </div>
+
+  </div>
+
+  <!-- RECOMMENDED -->
+  <div class="section-title cyan">Também Podes Gostar</div>
+  <div class="rec-grid">
+
+    <a href="#" class="rec-card">
+      <div class="rec-thumb p1">📺</div>
+      <div class="rec-info">
+        <div class="rec-title">X-Men: Evolution</div>
+        <div class="rec-meta">
+          <span class="rec-year">2000</span>
+          <span class="rec-type">SÉRIE</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="rec-card">
+      <div class="rec-thumb p2">📺</div>
+      <div class="rec-info">
+        <div class="rec-title">Batman: The Animated</div>
+        <div class="rec-meta">
+          <span class="rec-year">1992</span>
+          <span class="rec-type">SÉRIE</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="rec-card">
+      <div class="rec-thumb p3">📺</div>
+      <div class="rec-info">
+        <div class="rec-title">Homem-Aranha 1994</div>
+        <div class="rec-meta">
+          <span class="rec-year">1994</span>
+          <span class="rec-type">SÉRIE</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="rec-card">
+      <div class="rec-thumb p4">📺</div>
+      <div class="rec-info">
+        <div class="rec-title">The Avengers: EMH</div>
+        <div class="rec-meta">
+          <span class="rec-year">2010</span>
+          <span class="rec-type">SÉRIE</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+</section>
+
+<footer>
+  <p>VHS.ZIP — ARQUIVO PESSOAL DE NOSTALGIA</p>
+  <p style="margin-top:0.4rem; font-size:0.7rem;">◈ FEITO COM AMOR E SAUDADE ◈</p>
+</footer>
+
+<script>
+  // Episode data: archive and streamtape URLs per ep
+  const epData = {
+    'ep1': {
+      archive: 'https://archive.org/embed/o-espetacular-homem-aranha-1-tp-e-01',
+      streamtape: 'https://streamtape.com/e/7XddvwQO0qi4aX/',
+      title: 'Episódio 1 — A Grande Responsabilidade'
+    },
+    'ep2': {
+      archive: '',
+      streamtape: 'https://streamtape.com/e/2DPl0GW3pmfVvL/',
+      title: 'Episódio 2 — Inocente!'
+    },
+    'ep3': {
+      archive: '',
+      streamtape: 'https://streamtape.com/e/1pDK1Vx4m8cJ9V/',
+      title: 'Episódio 3 — Não Há Lugar Como o Lar'
+    },
+    'ep4': {
+      archive: '',
+      streamtape: 'https://streamtape.com/e/oQOZ0veLDdtKOB/',
+      title: 'Episódio 4 — O Abutre'
+    },
+    'ep5': {
+      archive: '',
+      streamtape: 'https://streamtape.com/e/0ZaW74p4OMFb7Z4/',
+      title: 'Episódio 5 — Ligações Perigosas'
+    },
+    'ep6': {
+      archive: '',
+      streamtape: 'https://streamtape.com/e/xbx29P8rQGCqx9/',
+      title: 'Episódio 6 — O Electro'
+    }
+  };
+
+  let currentPlayer = 'archive';
+  let currentEpKey = 'ep1';
+
+  function switchPlayer(source) {
+    currentPlayer = source;
+    document.querySelectorAll('.psw-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn-' + source).classList.add('active');
+    const ep = epData[currentEpKey];
+    if (ep && ep[source]) {
+      document.getElementById('main-player').src = ep[source];
+    }
+  }
+
+  function playEp(epKey, card) {
+    const ep = epData[epKey];
+    if (!ep) {
+      alert('Este episódio ainda não foi adicionado. Em breve!');
+      return;
+    }
+    currentEpKey = epKey;
+    const url = ep[currentPlayer] || ep.archive;
+    document.getElementById('main-player').src = url;
+    document.getElementById('now-playing-title').textContent = ep.title;
+    document.querySelectorAll('.ep-card').forEach(c => c.classList.remove('active'));
+    if (card) card.classList.add('active');
+    document.getElementById('player').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.stab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
