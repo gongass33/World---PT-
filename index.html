@@ -435,23 +435,23 @@
   .carousel-wrap {
     position: relative;
     overflow: hidden;
-    margin: 0;
+    width: 100%;
   }
 
   .carousel-inner {
     display: flex;
     width: 100%;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.5s ease;
+    will-change: transform;
   }
 
-  .carousel-track {
-    display: flex;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
+  .carousel-track { display: contents; }
 
   .featured-card {
     position: relative;
     min-width: 100%;
+    width: 100%;
+    flex-shrink: 0;
     background: linear-gradient(135deg, #0d0820, #1a0533 50%, #3d0f2e);
     border: 1px solid rgba(255,45,120,0.2);
     padding: 3rem;
@@ -481,49 +481,6 @@
     pointer-events: none;
   }
 
-  .featured-content { max-width: 500px; }
-
-  .featured-tag {
-    font-family: 'VT323', monospace;
-    font-size: 1rem;
-    letter-spacing: 0.3em;
-    color: var(--neon-yellow);
-    text-shadow: 0 0 8px var(--neon-yellow);
-    margin-bottom: 0.75rem;
-  }
-
-  .featured-title {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 1rem;
-    line-height: 1.1;
-  }
-
-  .featured-desc {
-    font-size: 0.8rem;
-    line-height: 1.8;
-    color: rgba(232,224,255,0.6);
-    margin-bottom: 1.5rem;
-  }
-
-  .featured-poster {
-    flex-shrink: 0;
-    width: 160px;
-    aspect-ratio: 2/3;
-    position: relative;
-    z-index: 1;
-  }
-
-  .featured-poster img {
-    width: 160px;
-    aspect-ratio: 2/3;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* CAROUSEL CONTROLS */
   .carousel-btn {
     position: absolute;
     top: 50%;
@@ -539,17 +496,17 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
-    box-shadow: 0 0 15px rgba(0,245,255,0.5);
+    box-shadow: 0 0 15px rgba(0,245,255,0.4);
   }
 
   .carousel-btn:hover {
-    background: rgba(0,245,255,0.2);
-    box-shadow: 0 0 30px rgba(0,245,255,0.8);
+    background: rgba(0,245,255,0.15);
+    box-shadow: 0 0 25px rgba(0,245,255,0.7);
     color: white;
   }
 
-  .carousel-btn.prev { left: 0.5rem; }
-  .carousel-btn.next { right: 0.5rem; }
+  .carousel-btn.prev { left: 0.75rem; }
+  .carousel-btn.next { right: 0.75rem; }
 
   .carousel-dots {
     display: flex;
@@ -971,8 +928,7 @@
 <!-- FEATURED CAROUSEL -->
 <section class="featured">
   <div class="carousel-wrap">
-    <div class="carousel-inner">
-      <div class="carousel-track" id="carousel-track">
+    <div class="carousel-inner" id="carousel-track">
 
       <!-- SLIDE 1 — Homem-Aranha -->
       <div class="featured-card">
@@ -1006,7 +962,23 @@
         </div>
       </div>
 
-    </div>
+      <!-- SLIDE 3 — Invencível -->
+      <div class="featured-card" style="background:linear-gradient(135deg,#0d0820,#1a1000 50%,#2e2000);border-color:rgba(255,230,0,0.2);">
+        <div class="featured-content">
+          <div class="featured-tag" style="color:var(--neon-yellow);text-shadow:0 0 8px var(--neon-yellow);">◈ NOVA SÉRIE</div>
+          <div class="featured-title">Invencível</div>
+          <p class="featured-desc">Mark Grayson herda superpoderes aos 17 anos e une-se ao pai — um dos maiores heróis da Terra. Até que um evento chocante muda tudo. Com legendas em português!</p>
+          <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+            <a href="invencivel.html" class="btn-primary" style="background:var(--neon-yellow);color:#000;box-shadow:0 0 20px rgba(255,230,0,0.4);">▶ Assistir Agora</a>
+            <span style="font-family:'VT323',monospace; color:rgba(232,224,255,0.4); font-size:1rem; letter-spacing:0.1em;">SÉRIE • 2021 • ANIMAÇÃO</span>
+          </div>
+        </div>
+        <div class="featured-poster">
+          <img src="https://image.tmdb.org/t/p/w500/yDWJYRAwMNKbIYT8ZB33qy84uzO.jpg" alt="Invencível" style="border:1px solid rgba(255,230,0,0.4);">
+        </div>
+      </div>
+
+
     </div>
 
     <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
@@ -1017,6 +989,7 @@
   <div class="carousel-dots">
     <div class="dot active" onclick="goToSlide(0)"></div>
     <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
   </div>
 </section>
 
@@ -1034,11 +1007,11 @@
       </div>
       <div class="recent-date">HOJE</div>
     </a>
-    <a href="dexter.html" class="recent-item">
-      <img class="recent-thumb" src="https://i.imgur.com/Xdp3THA.jpg" alt="Laboratório do Dexter">
+    <a href="invencivel.html" class="recent-item">
+      <img class="recent-thumb" src="https://image.tmdb.org/t/p/w500/yDWJYRAwMNKbIYT8ZB33qy84uzO.jpg" alt="Invencível">
       <div class="recent-info">
-        <div class="recent-title">Laboratório do Dexter — Ep. 2: Desilusão de Babysitter</div>
-        <div class="recent-meta">SÉRIE · 1996 · ANIMAÇÃO</div>
+        <div class="recent-title">Invencível — Ep. 1: Finalmente</div>
+        <div class="recent-meta">SÉRIE · 2021 · ANIMAÇÃO · LEG PT</div>
       </div>
       <div class="recent-date">HOJE</div>
     </a>
@@ -1085,6 +1058,20 @@
         <div class="card-title">Laboratório do Dexter</div>
         <div class="card-meta">
           <span class="card-year">1996</span>
+          <span class="card-type type-series">SÉRIE</span>
+        </div>
+      </div>
+    </a>
+    <!-- Série Card 3 — Invencível -->
+    <a href="invencivel.html" class="card">
+      <div class="card-thumb" style="background:#0d0820;">
+        <img src="https://image.tmdb.org/t/p/w500/yDWJYRAwMNKbIYT8ZB33qy84uzO.jpg" alt="Invencível" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="card-overlay"><div class="play-btn">▶</div></div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">Invencível</div>
+        <div class="card-meta">
+          <span class="card-year">2021</span>
           <span class="card-type type-series">SÉRIE</span>
         </div>
       </div>
@@ -1251,6 +1238,7 @@
   const catalogue = [
     { title: 'O Incrível Homem-Aranha', year: 2008, type: 'SÉRIE', img: 'https://i.imgur.com/DMWawoJ.jpg', url: 'homem-aranha.html' },
     { title: 'Laboratório do Dexter', year: 1996, type: 'SÉRIE', img: 'https://i.imgur.com/Xdp3THA.jpg', url: 'dexter.html' },
+    { title: 'Invencível', year: 2021, type: 'SÉRIE', img: 'https://image.tmdb.org/t/p/w500/yDWJYRAwMNKbIYT8ZB33qy84uzO.jpg', url: 'invencivel.html' },
   ];
   document.getElementById('stat-series').textContent = catalogue.filter(i => i.type === 'SÉRIE').length;
   document.getElementById('stat-filmes').textContent = catalogue.filter(i => i.type === 'FILME').length;
