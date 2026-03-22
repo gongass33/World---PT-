@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2305030f'/%3E%3Crect x='2' y='7' width='28' height='18' rx='2' fill='%231a0533' stroke='%2300f5ff' stroke-width='1.5'/%3E%3Ccircle cx='10' cy='18' r='3.5' fill='%2305030f' stroke='%23ff2d78' stroke-width='1.2'/%3E%3Ccircle cx='22' cy='18' r='3.5' fill='%2305030f' stroke='%23ff2d78' stroke-width='1.2'/%3E%3Ccircle cx='10' cy='18' r='1.2' fill='%23ff2d78'/%3E%3Ccircle cx='22' cy='18' r='1.2' fill='%23ff2d78'/%3E%3C/svg%3E">
-<title>Laboratório do Dexter — WORLD PT</title>
+<title>O Incrível Homem-Aranha — WORLD PT</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1144,6 +1144,64 @@
     .serie-poster { width: 120px; }
     .seasons-section { padding: 1.5rem; }
   }
+
+  .rec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .rec-card {
+    background: rgba(13,8,32,0.8);
+    border: 1px solid rgba(0,245,255,0.08);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: block;
+  }
+  .rec-card:hover {
+    border-color: var(--neon-cyan);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 20px rgba(0,245,255,0.15);
+  }
+  .rec-thumb {
+    aspect-ratio: 2/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'VT323', monospace;
+    font-size: 3rem;
+    opacity: 0.4;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  .rec-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 1;
+  }
+  .p1 { background: linear-gradient(135deg, #1a0533, #bf00ff); }
+  .p2 { background: linear-gradient(135deg, #2e0a00, #ff2d78); }
+  .p3 { background: linear-gradient(135deg, #001a2e, #00f5ff); }
+  .p4 { background: linear-gradient(135deg, #0a2e00, #ffe600); }
+  .rec-info { padding: 0.65rem; }
+  .rec-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rec-meta { display: flex; justify-content: space-between; align-items: center; }
+  .rec-year { font-family: 'VT323', monospace; font-size: 0.9rem; color: rgba(232,224,255,0.35); }
+  .rec-type { font-size: 0.58rem; letter-spacing: 0.08em; padding: 1px 5px; color: var(--neon-purple); border: 1px solid rgba(191,0,255,0.3); }
+
 </style>
 </head>
 <body>
@@ -1169,25 +1227,25 @@
 
 <!-- HERO -->
 <div class="serie-page-hero">
-  <div class="serie-hero-bg" style="background-image:url('https://i.imgur.com/Xdp3THA.jpg');"></div>
+  <div class="serie-hero-bg" style="background-image:url('https://i.imgur.com/DMWawoJ.jpg');"></div>
   <div class="serie-hero-content">
-    <img class="serie-poster" src="https://i.imgur.com/Xdp3THA.jpg" alt="Laboratório do Dexter">
+    <img class="serie-poster" src="https://i.imgur.com/wQaUyaM.jpg" alt="O Incrível Homem-Aranha">
     <div class="serie-info">
       <div class="hero-label">◈ SÉRIE ANIMADA</div>
-      <h1 class="serie-title">Laboratório<br>do <span>Dexter</span></h1>
+      <h1 class="serie-title">O Incrível<br><span>Homem-Aranha</span></h1>
       <div class="meta-row">
-        <span class="meta-pill year">1996</span>
+        <span class="meta-pill year">2008</span>
         <span class="meta-pill genre">ANIMAÇÃO</span>
-        <span class="meta-pill genre">COMÉDIA</span>
-        <span class="meta-pill eps">78 EPISÓDIOS</span>
-        <span class="meta-pill dur">∅ 11 MIN / EP</span>
+        <span class="meta-pill genre">ACÇÃO</span>
+        <span class="meta-pill eps">26 EPISÓDIOS</span>
+        <span class="meta-pill dur">∅ 22 MIN / EP</span>
       </div>
       <div class="rating-row">
         <span class="stars">★★★★★</span>
-        <span class="rating-num">7.7</span>
+        <span class="rating-num">8.1</span>
         <span class="rating-src">/ 10 — IMDb</span>
       </div>
-      <p class="serie-synopsis">Dexter é um menino prodígio que esconde um laboratório secreto e ultramoderno no seu quarto. Apesar de ser um génio científico, o seu maior inimigo é a sua própria irmã Dee Dee — que invade constantemente o laboratório e destrói as suas experiências. Uma série icónica do Cartoon Network.</p>
+      <p class="serie-synopsis">Peter Parker é um adolescente inteligente mas socialmente tímido que, após ser picado por uma aranha geneticamente modificada, adquire poderes extraordinários. Enquanto tenta equilibrar a vida escolar, a família e o amor, enfrenta alguns dos vilões mais icónicos do universo Marvel.</p>
       <div class="action-row">
         <a href="#seasons" class="btn-primary" onclick="openEpPanel('ep1')">▶ Ver Episódio 1</a>
       </div>
@@ -1219,7 +1277,7 @@
   <div class="section-title" style="margin-bottom:1.5rem;">Temporadas</div>
   <div class="seasons-grid">
     <div class="season-card" onclick="openEpPanel('ep1')">
-      <div class="season-card-thumb" style="background-image:url('https://i.imgur.com/Xdp3THA.jpg');">
+      <div class="season-card-thumb" style="background-image:url('https://i.imgur.com/wQaUyaM.jpg');">
         <span class="season-card-label">T1</span>
       </div>
       <div class="season-card-info">
@@ -1228,7 +1286,7 @@
       </div>
     </div>
     <div class="season-card">
-      <div class="season-card-thumb" style="background:linear-gradient(135deg,#001a33,#0d2e1a);">
+      <div class="season-card-thumb" style="background:linear-gradient(135deg,#1a0533,#3d0f6e);">
         <span class="season-card-label">T2</span>
       </div>
       <div class="season-card-info">
@@ -1236,45 +1294,27 @@
         <div class="season-card-eps">EM BREVE</div>
       </div>
     </div>
-    <div class="season-card">
-      <div class="season-card-thumb" style="background:linear-gradient(135deg,#1a0533,#2e0a1a);">
-        <span class="season-card-label">T3</span>
-      </div>
-      <div class="season-card-info">
-        <div class="season-card-title">Temporada 3</div>
-        <div class="season-card-eps">EM BREVE</div>
-      </div>
-    </div>
-    <div class="season-card">
-      <div class="season-card-thumb" style="background:linear-gradient(135deg,#2e1a00,#1a0533);">
-        <span class="season-card-label">T4</span>
-      </div>
-      <div class="season-card-info">
-        <div class="season-card-title">Temporada 4</div>
-        <div class="season-card-eps">EM BREVE</div>
-      </div>
-    </div>
   </div>
 
   <div class="section-title" style="margin-bottom:1.5rem; margin-top:2rem;">Episódios</div>
-  <div class="season-tabs"><button class="stab active">Temporada 1</button><button class="stab">Temporada 2</button><button class="stab">Temporada 3</button><button class="stab">Temporada 4</button></div>
+  <div class="season-tabs"><button class="stab active">Temporada 1</button><button class="stab">Temporada 2</button></div>
   <div class="episodes-grid" id="eps-grid">
     
-    <div class="ep-card" data-ep="ep1" onclick="openEpPanel('ep1')"><div class="ep-num">01</div><div class="ep-info"><div class="ep-title">Os Ajudantes de Estrelas Brilhantes</div><div class="ep-meta">T1 · 11 MIN</div></div><div class="ep-play">▶</div></div>
-    <div class="ep-card" data-ep="ep2" onclick="openEpPanel('ep2')"><div class="ep-num">02</div><div class="ep-info"><div class="ep-title">Desilusão de Babysitter</div><div class="ep-meta">T1 · 11 MIN</div></div><div class="ep-play">▶</div></div>
-    <div class="ep-card"><div class="ep-num">03</div><div class="ep-info"><div class="ep-title">Em breve...</div><div class="ep-meta">T1 · 11 MIN</div></div><div class="ep-play">▶</div></div>
-    <div class="ep-card"><div class="ep-num">04</div><div class="ep-info"><div class="ep-title">Em breve...</div><div class="ep-meta">T1 · 11 MIN</div></div><div class="ep-play">▶</div></div>
-    <div class="ep-card"><div class="ep-num">05</div><div class="ep-info"><div class="ep-title">Em breve...</div><div class="ep-meta">T1 · 11 MIN</div></div><div class="ep-play">▶</div></div>
-    <div class="ep-card"><div class="ep-num">06</div><div class="ep-info"><div class="ep-title">Em breve...</div><div class="ep-meta">T1 · 11 MIN</div></div><div class="ep-play">▶</div></div>
+    <div class="ep-card" data-ep="ep1" onclick="openEpPanel('ep1')"><div class="ep-num">01</div><div class="ep-info"><div class="ep-title">A Grande Responsabilidade</div><div class="ep-meta">T1 · 22 MIN</div></div><div class="ep-play">▶</div></div>
+    <div class="ep-card" data-ep="ep2" onclick="openEpPanel('ep2')"><div class="ep-num">02</div><div class="ep-info"><div class="ep-title">Inocente!</div><div class="ep-meta">T1 · 22 MIN</div></div><div class="ep-play">▶</div></div>
+    <div class="ep-card" data-ep="ep3" onclick="openEpPanel('ep3')"><div class="ep-num">03</div><div class="ep-info"><div class="ep-title">Não Há Lugar Como o Lar</div><div class="ep-meta">T1 · 22 MIN</div></div><div class="ep-play">▶</div></div>
+    <div class="ep-card" data-ep="ep4" onclick="openEpPanel('ep4')"><div class="ep-num">04</div><div class="ep-info"><div class="ep-title">O Abutre</div><div class="ep-meta">T1 · 22 MIN</div></div><div class="ep-play">▶</div></div>
+    <div class="ep-card" data-ep="ep5" onclick="openEpPanel('ep5')"><div class="ep-num">05</div><div class="ep-info"><div class="ep-title">Ligações Perigosas</div><div class="ep-meta">T1 · 22 MIN</div></div><div class="ep-play">▶</div></div>
+    <div class="ep-card" data-ep="ep6" onclick="openEpPanel('ep6')"><div class="ep-num">06</div><div class="ep-info"><div class="ep-title">O Electro</div><div class="ep-meta">T1 · 22 MIN</div></div><div class="ep-play">▶</div></div>
   </div>
 
   <!-- RECOMMENDED -->
   <div class="section-title cyan" style="margin-top:2rem;margin-bottom:1rem;">Também Podes Gostar</div>
   <div class="rec-grid">
-    <a href="homem-aranha.html" class="rec-card"><div class="rec-thumb"><img src="https://i.imgur.com/DMWawoJ.jpg" style="width:100%;height:100%;object-fit:cover;"></div><div class="rec-info"><div class="rec-title">O Incrível Homem-Aranha</div><div class="rec-meta"><span class="rec-year">2008</span><span class="rec-type">SÉRIE</span></div></div></a>
-    <a href="#" class="rec-card"><div class="rec-thumb p1">📺</div><div class="rec-info"><div class="rec-title">Johnny Bravo</div><div class="rec-meta"><span class="rec-year">1997</span><span class="rec-type">SÉRIE</span></div></div></a>
-    <a href="#" class="rec-card"><div class="rec-thumb p2">📺</div><div class="rec-info"><div class="rec-title">As Meninas Superpoderosas</div><div class="rec-meta"><span class="rec-year">1998</span><span class="rec-type">SÉRIE</span></div></div></a>
-    <a href="#" class="rec-card"><div class="rec-thumb p4">📺</div><div class="rec-info"><div class="rec-title">Cow and Chicken</div><div class="rec-meta"><span class="rec-year">1997</span><span class="rec-type">SÉRIE</span></div></div></a>
+    <a href="dexter.html" class="rec-card"><div class="rec-thumb"><img src="https://i.imgur.com/Xdp3THA.jpg" style="width:100%;height:100%;object-fit:cover;"></div><div class="rec-info"><div class="rec-title">Laboratório do Dexter</div><div class="rec-meta"><span class="rec-year">1996</span><span class="rec-type">SÉRIE</span></div></div></a>
+    <a href="#" class="rec-card"><div class="rec-thumb p1">📺</div><div class="rec-info"><div class="rec-title">X-Men: Evolution</div><div class="rec-meta"><span class="rec-year">2000</span><span class="rec-type">SÉRIE</span></div></div></a>
+    <a href="#" class="rec-card"><div class="rec-thumb p2">📺</div><div class="rec-info"><div class="rec-title">Batman: TAS</div><div class="rec-meta"><span class="rec-year">1992</span><span class="rec-type">SÉRIE</span></div></div></a>
+    <a href="#" class="rec-card"><div class="rec-thumb p3">📺</div><div class="rec-info"><div class="rec-title">Homem-Aranha 1994</div><div class="rec-meta"><span class="rec-year">1994</span><span class="rec-type">SÉRIE</span></div></div></a>
   </div>
 
 </section>
@@ -1286,8 +1326,12 @@
 
 <script>
   const epData = {
-    'ep1': { archive: 'https://archive.org/embed/o-laboratorio-de-dexter-os-teus-filmes-tuga/%5BS01.E01%5D+Os+Ajudantes+de+Estrelas+Brilhantes++Os+Superamigos+da+TV++Fim+do+Jogo.mp4.mp4', streamtape: 'https://streamtape.com/e/vKQbgb8RArSw69/', title: 'Ep. 1 — Os Ajudantes de Estrelas Brilhantes' },
-    'ep2': { archive: 'https://archive.org/embed/o-laboratorio-de-dexter-os-teus-filmes-tuga/%5BS01.E02%5D+Desilusão+de+Babysitter++O+Quarto+do+Valhallen++A+Máquina+de+Sonhos.mp4.mp4', streamtape: 'https://streamtape.com/e/r0Bxm6WA4JFYk7/', title: 'Ep. 2 — Desilusão de Babysitter' },
+    'ep1': { archive: 'https://archive.org/embed/o-espetacular-homem-aranha-1-tp-e-01', streamtape: 'https://streamtape.com/e/7XddvwQO0qi4aX/', title: 'Ep. 1 — A Grande Responsabilidade' },
+    'ep2': { archive: '', streamtape: 'https://streamtape.com/e/2DPl0GW3pmfVvL/', title: 'Ep. 2 — Inocente!' },
+    'ep3': { archive: '', streamtape: 'https://streamtape.com/e/1pDK1Vx4m8cJ9V/', title: 'Ep. 3 — Não Há Lugar Como o Lar' },
+    'ep4': { archive: '', streamtape: 'https://streamtape.com/e/oQOZ0veLDdtKOB/', title: 'Ep. 4 — O Abutre' },
+    'ep5': { archive: '', streamtape: 'https://streamtape.com/e/0ZaW74p4OMFb7Z4/', title: 'Ep. 5 — Ligações Perigosas' },
+    'ep6': { archive: '', streamtape: 'https://streamtape.com/e/xbx29P8rQGCqx9/', title: 'Ep. 6 — O Electro' },
   };
 
   let currentPlayer = 'archive';
