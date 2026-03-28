@@ -1153,6 +1153,10 @@
     border-color: var(--neon-pink); color: var(--neon-pink);
     box-shadow: 0 0 8px rgba(255,45,120,0.3);
   }
+  /* SEASON PANEL HIDDEN BY DEFAULT */
+  #season-panel { display: none; }
+  #season-panel.visible { display: block; }
+
   /* SEASON TABS */
   .season-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
   .stab {
@@ -1271,7 +1275,7 @@
   <div class="season-card" onclick="showSeason(3)" id="scard-3"><div class="season-thumb" style="background:linear-gradient(135deg,#1a0033,#2e003e);"><span class="season-thumb-label">T3</span></div><div class="season-info"><div class="season-title">Temporada 3</div><div class="season-eps">EM BREVE</div></div></div>
   <div class="season-card" onclick="showSeason(4)" id="scard-4"><div class="season-thumb" style="background:linear-gradient(135deg,#2e1a00,#1a0533);"><span class="season-thumb-label">T4</span></div><div class="season-info"><div class="season-title">Temporada 4</div><div class="season-eps">EM BREVE</div></div></div></div>
 
-  <div id="season-panel" style="display:none;" class="season-panel-wrap">
+  <div id="season-panel" class="season-panel-wrap">
   <div class="section-title" style="margin-bottom:1.25rem;">Episódios — <span id="season-panel-title" style="color:var(--neon-cyan);">Temporada 1</span></div>
   <div class="episodes-grid">
   <div class="ep-card" data-ep="ep1" onclick="openEpPanel('ep1')"><div class="ep-num">01</div><div class="ep-info"><div class="ep-title">Os Ajudantes de Estrelas Brilhantes</div><div class="ep-meta">T1 · 11 MIN</div></div><div class="ep-play">▶</div></div>
@@ -1312,11 +1316,11 @@
     const panel = document.getElementById('season-panel');
     const title = document.getElementById('season-panel-title');
     if (num === 1) {
-      panel.style.display = 'block';
+      panel.classList.add('visible');
       title.textContent = 'Temporada 1';
       panel.scrollIntoView({behavior:'smooth'});
     } else {
-      panel.style.display = 'none';
+      panel.classList.remove('visible');
       alert('Esta temporada ainda não está disponível. Em breve!');
     }
   }
