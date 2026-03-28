@@ -1263,14 +1263,15 @@
 
   <div class="section-title" style="margin-bottom:1.25rem;">Temporadas</div>
   <div class="seasons-grid">
-  <div class="season-card active" onclick="showSeason(1)" id="scard-1">
+  <div class="season-card" onclick="showSeason(1)" id="scard-1">
     <div class="season-thumb" style="background-image:url('https://i.imgur.com/Xdp3THA.jpg');"><span class="season-thumb-label">T1</span></div>
     <div class="season-info"><div class="season-title">Temporada 1</div><div class="season-eps">13 EPISÓDIOS</div></div>
   </div>
   <div class="season-card" onclick="showSeason(2)" id="scard-2"><div class="season-thumb" style="background:linear-gradient(135deg,#001a33,#0d2e1a);"><span class="season-thumb-label">T2</span></div><div class="season-info"><div class="season-title">Temporada 2</div><div class="season-eps">EM BREVE</div></div></div>
-<div class="season-card" onclick="showSeason(4)" id="scard-4"><div class="season-thumb" style="background:linear-gradient(135deg,#2e1a00,#1a0533);"><span class="season-thumb-label">T4</span></div><div class="season-info"><div class="season-title">Temporada 4</div><div class="season-eps">EM BREVE</div></div></div></div>
+  <div class="season-card" onclick="showSeason(3)" id="scard-3"><div class="season-thumb" style="background:linear-gradient(135deg,#1a0033,#2e003e);"><span class="season-thumb-label">T3</span></div><div class="season-info"><div class="season-title">Temporada 3</div><div class="season-eps">EM BREVE</div></div></div>
+  <div class="season-card" onclick="showSeason(4)" id="scard-4"><div class="season-thumb" style="background:linear-gradient(135deg,#2e1a00,#1a0533);"><span class="season-thumb-label">T4</span></div><div class="season-info"><div class="season-title">Temporada 4</div><div class="season-eps">EM BREVE</div></div></div></div>
 
-  <div id="season-panel" style="display:block;">
+  <div id="season-panel" style="display:none;" class="season-panel-wrap">
   <div class="section-title" style="margin-bottom:1.25rem;">Episódios — <span id="season-panel-title" style="color:var(--neon-cyan);">Temporada 1</span></div>
   <div class="episodes-grid">
   <div class="ep-card" data-ep="ep1" onclick="openEpPanel('ep1')"><div class="ep-num">01</div><div class="ep-info"><div class="ep-title">Os Ajudantes de Estrelas Brilhantes</div><div class="ep-meta">T1 · 11 MIN</div></div><div class="ep-play">▶</div></div>
@@ -1355,9 +1356,6 @@
       else alert('Não disponível neste player.');
     }
   }
-
-  // Mostrar temporada 1 por defeito
-  showSeason(1);
 
   document.querySelectorAll('.stab').forEach(tab => {
     tab.addEventListener('click', () => {
